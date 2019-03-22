@@ -35,5 +35,5 @@
         <aop:advisor advice-ref="txAdvice"
                      pointcut="execution(* LightningProtection.service.*.*(..))" />
     </aop:config>
-    <jdbc:embedded-database id="dataSource"/>
+    <!--jdbc:embedded-database id="dataSource"/-->
 </beans>
