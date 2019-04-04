@@ -16,7 +16,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "userRegister",method = RequestMethod.GET)
+    /*@RequestMapping(value = "userRegister",method = RequestMethod.GET)
     public String userRegister(ta_auth_user adduser, HttpServletRequest request, HttpServletResponse response) throws Exception{
         String username = request.getParameter("username");
         String realname = request.getParameter("realname");
@@ -35,9 +35,9 @@ public class UserController {
         }else{
             return "login";
         }
-    }
+    }*/
 
-    @RequestMapping(value = "userLogin",method = RequestMethod.POST)
+    @RequestMapping(value = "/",method = RequestMethod.POST)
     public String userLogin(HttpServletRequest request,HttpServletResponse response) throws Exception{
         String name = request.getParameter("username");
         String pass = request.getParameter("password");
@@ -45,7 +45,7 @@ public class UserController {
         pass = new String(pass.getBytes("iso-8859-1"),"UTF-8");
         if (userService.userLogin(name,pass)){
             /*ResponseUtil.write(response,"登录成功");*/
-            return "index";
+            return "main";
         }else{
             ResponseUtil.write(response,"用户名或密码错误!");
             return "login";

@@ -42,19 +42,12 @@
 </head>
 
 <body class="easyui-layout">
-<div data-options="region:'north',title:'四川雷盾科技有限公司'" style="width:1000px;height: 60px">
+<div data-options="region:'north',title:'四川雷盾科技有限公司'" style="width:100%;height: 60px">
     <table border="0" cellspacing="0">
         <tr style="height: 31px">
-            <td style="background-color: #CCDCF7;width: 80px;text-align: center;font-size: 12px"><a href="./main">防雷工程管理</a></td>
-            <td style="background-color: #CCDCF7;width: 80px;text-align: center;font-size: 12px"><a href="#">办公管理</a></td>
-            <td style="background-color: #CCDCF7;width: 70px;text-align: center;font-size: 12px"><a href="#">防雷验审</a></td>
-            <td style="background-color: #CCDCF7;width: 75px;text-align: center;font-size: 12px"><a href="#">质量监督</a></td>
-            <td style="background-color: #CCDCF7;width: 75px;text-align: center;font-size: 12px"><a href="#">防雷检测</a></td>
-            <td style="background-color: #CCDCF7;width: 90px;text-align: center;font-size: 12px"><a href="#">业务科研管理</a></td>
-            <td style="background-color: #CCDCF7;width: 80px;text-align: center;font-size: 12px"><a href="#">办公自动化</a></td>
-            <td style="background-color:#CCDCF7;text-align: right;width: 1310px;font-size: 12px">欢迎您，系统管理员！</td>
-            <td style="background-color:#CCDCF7;text-align: center;width: 40px;font-size: 12px"><a href="javascript:void(0)"
-                                                                                   style="font-weight: 500" onClick="alert()">退出</a></td>
+            <td style="width: 200px;background-color: #CCDCF7;color: #041343">防雷工程管理系统</td>
+            <td style="background-color:#CCDCF7;text-align: right;width: 1710px;font-size: 12px">欢迎您，系统管理员！</td>
+            <td style="background-color:#CCDCF7;text-align: center;width: 40px;font-size: 12px"><a href="javascript:void(0)" style="font-weight: 500" onClick="alert()">退出</a></td>
         </tr>
     </table>
 </div>

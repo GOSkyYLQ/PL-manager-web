@@ -10,6 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <link rel="stylesheet" type="text/css"
           href="../js/jquery-easyui-1.4.1/themes/default/easyui.css" />
     <link rel="stylesheet" type="text/css"
@@ -43,7 +44,7 @@
 </head>
 
 <body class="easyui-layout">
-<div data-options="region:'north',title:'四川雷盾科技有限公司'" style="width:1000px;height: 60px">
+<div id="resizeDiv" data-options="region:'north',title:'四川雷盾科技有限公司'" style="width: 100%;height: 60px">
     <table border="0" cellspacing="0">
         <tr style="height: 31px">
             <td style="background-color: #CCDCF7;width: 80px;text-align: center;font-size: 12px"><a href="./main">防雷工程管理</a></td>
@@ -59,7 +60,7 @@
         </tr>
     </table>
 </div>
-<div region="west" title="菜单" split="true" style="width: 180px;"></div>
+<div region="west" title="菜单" split="true" style="width: 180px"></div>
 
 <div data-options="region:'center',title:''">
     <div id="tabs" class="easyui-tabs">
@@ -71,11 +72,11 @@
                             <div style="height: 35px;background-color:#CCDCF7">
                                 <span style="font-size: 15px;padding-left: 18px;letter-spacing: 2px;font-weight: 560">企业图片</span>
                             </div>
-                            <div class="slider slider_one_big_picture" style="width:830px;height: 365px">
-                                <div style="width:830px;border: none"><img src="../img/p4.jpg" width="830px" height="365px"></div>
-                                <div style="width:830px;border: none"><img src="../img/p2.jpg" width="830px" height="365px"></div>
-                                <div style="width:830px;border: none"><img src="../img/p3.jpg" width="830px" height="365px"></div>
-                                <div style="width:830px;border: none"><img src="../img/p1.jpg" width="830px" height="365px"></div>
+                            <div class="slider slider_one_big_picture" style="width: 100%;height: 365px">
+                                <div style="width: 830px;border: none"><img src="../img/p4.jpg" width="830px" height="365px"></div>
+                                <div style="width: 830px;border: none"><img src="../img/p2.jpg" width="830px" height="365px"></div>
+                                <div style="width: 830px;border: none"><img src="../img/p3.jpg" width="830px" height="365px"></div>
+                                <div style="width: 830px;border: none"><img src="../img/p1.jpg" width="830px" height="365px"></div>
                                 <div class="next_button">NEXT</div>
                                 <div class="prev_button">PREV</div>
                                 <div class="nav_indicators"></div>
