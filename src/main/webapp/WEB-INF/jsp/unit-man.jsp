@@ -1,20 +1,20 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2019/4/1/001
-  Time: 15:14
+  User: 24652
+  Date: 2019/4/9
+  Time: 15:52
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<table class="easyui-datagrid" id="ProjectList" title="项目列表"
-       data-options="singleSelect:false,collapsible:true,pagination:true,url:'/item/list',method:'get',pageSize:5,toolbar:toolbar">
+<table class="easyui-datagrid" id="UnitList" title="项目列表"
+       data-options="singleSelect:false,collapsible:true,pagination:true,url:'/unit/list',method:'get',pageSize:5,toolbar:toolbar">
     <tr>
         <div style="background-color: #CCDCF7;width:1725px;padding: 5px">
             <form>
                 <span style="font-size:14px">工程名称</span>&nbsp;&nbsp;
                 <input type="text" name="proj-name" id="proj-name" placeholder="输入查询关键字">&nbsp;&nbsp;
-                <span style="font-size:14px">项目负责人</span>&nbsp;&nbsp;
-                <input type="text" name="proj-header" id="proj-header" placeholder="输入查询关键字">&nbsp;&nbsp;
+                <span style="font-size:14px">单位名称</span>&nbsp;&nbsp;
+                <input type="text" name="unit-name" id="proj-header" placeholder="输入查询关键字">&nbsp;&nbsp;
                 <button type="submit" class="active-event" value="search">搜 索</button>
                 <%--<button type="submit" value="add" class="active-event" style="float: right;background-color:#7FB1F5">添加防雷项目</button>--%>
             </form>
@@ -23,23 +23,24 @@
     <thead>
     <tr>
         <th data-options="field:'ck',checkbox:true"></th>
-        <th data-options="field:'id',width:100">工程ID</th>
         <th data-options="field:'pro_name',width:380">工程名称</th>
-        <th data-options="field:'pro_header',width:150,align:'center'">项目负责人</th>
+        <th data-options="field:'unit-name',width:150,align:'center'">单位名称</th>
+        <th data-options="field:'unit-address',width:150,align:'center'">单位地址</th>
+        <th data-options="field:'dept',width:150,align:'center'">主管部门</th>
+        <th data-options="field:'leader',width:150,align:'center'">主管领导</th>
+        <th data-options="field:'lea_mobile',width:150,align:'center'">领导电话</th>
+        <th data-options="field:'hea',width:150,align:'center'">负责人</th>
         <th data-options="field:'hea_mobile',width:150,align:'center'">负责人电话</th>
-        <th data-options="field:'create_time',width:170,align:'center',formatter:TAOTAO.formatDateTime">创建时间</th>
     </tr>
     </thead>
 </table>
-<div id="projectEditWindow" class="easyui-window" title="编辑项目" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/rest/page/item-edit'" style="width:80%;height:80%;padding:10px;">
-</div>
-<div id="projectAddWindow" class="easyui-window" title="新增项目" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/rest/page/item-edit'" style="width:80%;height:80%;padding:10px;">
+<div id="itemEditWindow" class="easyui-window" title="编辑单位" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/rest/page/item-edit'" style="width:80%;height:80%;padding:10px;">
 </div>
 <script>
 
     function getSelectionsIds(){
-        var projectList = $("#ProjectList");
-        var sels = projectList.datagrid("getSelections");
+        var itemList = $("#UnitList");
+        var sels = itemList.datagrid("getSelections");
         var ids = [];
         for(var i in sels){
             ids.push(sels[i].id);
@@ -52,12 +53,7 @@
         text:'新增',
         iconCls:'icon-add',
         handler:function(){
-            $("#projectAddWindow").window({
-                onLoad :function(){
-
-            }
-
-            }).window("open");
+            $(".tree-title:contains('新增商品')").parent().click();
         }
     },{
         text:'编辑',
@@ -65,15 +61,15 @@
         handler:function(){
             var ids = getSelectionsIds();
             if(ids.length == 0){
-                $.messager.alert('提示','必须选择一个工程才能编辑!');
+                $.messager.alert('提示','必须选择一个商品才能编辑!');
                 return ;
             }
             if(ids.indexOf(',') > 0){
-                $.messager.alert('提示','只能选择一个工程!');
+                $.messager.alert('提示','只能选择一个商品!');
                 return ;
             }
 
-            $("#projectEditWindow").window({
+            $("#itemEditWindow").window({
                 onLoad :function(){
                     //回显数据
                     var data = $("#itemList").datagrid("getSelections")[0];
@@ -135,12 +131,12 @@
                 $.messager.alert('提示','未选中商品!');
                 return ;
             }
-            $.messager.confirm('确认','确定删除ID为 '+ids+' 的项目吗？',function(r){
+            $.messager.confirm('确认','确定删除ID为 '+ids+' 的商品吗？',function(r){
                 if (r){
                     var params = {"ids":ids};
-                    $.get("/rest/item/delete",params, function(data){
+                    $.post("/rest/item/delete",params, function(data){
                         if(data.status == 200){
-                            $.messager.alert('提示','删除项目成功!',undefined,function(){
+                            $.messager.alert('提示','删除商品成功!',undefined,function(){
                                 $("#itemList").datagrid("reload");
                             });
                         }
