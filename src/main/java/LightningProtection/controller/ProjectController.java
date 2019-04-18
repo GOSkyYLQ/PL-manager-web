@@ -18,21 +18,21 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
-    @RequestMapping("/item/{id}")
+    @RequestMapping("/item/{pro_name}")
     @ResponseBody
-    private ta_project getProjectById(@PathVariable int id){
-        ta_project taProject = projectService.getProjectById(id);
+    public ta_project getProjectByExample(@PathVariable String pro_name){
+        ta_project taProject = projectService.getProjectByExample(pro_name);
         return taProject;
     }
 
     @RequestMapping("/item/list")
     @ResponseBody
-    public EasyUIDataGridResult getProjectList(Integer page,Integer rows){
-        EasyUIDataGridResult result = projectService.getProjectList(page ,rows);
+    public EasyUIDataGridResult getProjectList(Integer page,Integer rows,String pro_name,String pro_header){
+        EasyUIDataGridResult result = projectService.getProjectList(page ,rows,pro_name,pro_header);
         return result;
     }
 
-    @RequestMapping(value = "/rest/item/delete",method = RequestMethod.GET)
+    @RequestMapping(value = "/rest/item/delete",method = RequestMethod.POST)
     @ResponseBody
     public PLResult deleteProjectById(Long id){
         PLResult result = projectService.deleteProjectById(id);

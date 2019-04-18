@@ -58,8 +58,14 @@
             <span>防雷工程管理</span>
             <ul>
                 <li data-options="attributes:{'url':'project-man'}">防雷项目管理</li>
+                <li data-options="attributes:{'url':'project-add'}">新增项目</li>
+                <li data-options="attributes:{'url':'project-update'}">编辑项目</li>
                 <li data-options="attributes:{'url':'unit-man'}">建设单位管理</li>
-                <li data-options="attributes:{'url':'project-place'}">项目所在地</li>
+                <li data-options="attributes:{'url':'unit-add'}">新增单位</li>
+                <li data-options="attributes:{'url':'unit-update'}">编辑单位</li>
+                <li data-options="attributes:{'url':'project-place-man'}">项目所在地管理</li>
+                <li data-options="attributes:{'url':'project-place-add'}">新增所在地</li>
+                <li data-options="attributes:{'url':'project-place-update'}">编辑所在地</li>
             </ul>
         </li>
         <li>
@@ -67,6 +73,13 @@
             <ul>
                 <li data-options="attributes:{'url':'contract-man'}">合同管理</li>
                 <li data-options="attributes:{'url':'fixed-assets'}">固定资产</li>
+            </ul>
+        </li>
+        <li>
+            <span>审核管理</span>
+            <ul>
+                <li data-options="attributes:{'url':'project_check'}">项目审核</li>
+                <li data-options="attributes:{'url':'contract-check'}">合同审核</li>
             </ul>
         </li>
     </ul>

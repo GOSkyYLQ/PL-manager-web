@@ -24,8 +24,8 @@
     <tr>
         <th data-options="field:'ck',checkbox:true"></th>
         <th data-options="field:'pro_name',width:380">工程名称</th>
-        <th data-options="field:'unit-name',width:150,align:'center'">单位名称</th>
-        <th data-options="field:'unit-address',width:150,align:'center'">单位地址</th>
+        <th data-options="field:'unit_name',width:150,align:'center'">单位名称</th>
+        <th data-options="field:'unit_address',width:150,align:'center'">单位地址</th>
         <th data-options="field:'dept',width:150,align:'center'">主管部门</th>
         <th data-options="field:'leader',width:150,align:'center'">主管领导</th>
         <th data-options="field:'lea_mobile',width:150,align:'center'">领导电话</th>

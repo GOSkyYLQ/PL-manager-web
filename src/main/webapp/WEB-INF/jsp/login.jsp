@@ -26,7 +26,7 @@
     </a>
 </header>
 <main>
-    <p>防雷工程管理系统</p>
+    <p>防雷业务综合管理系统-防雷工程管理子系统</p>
     <div class="flip-modal login">
         <div class="modal modal-login">
             <a class="close fa fa-close" href="#"></a>
