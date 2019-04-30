@@ -27,8 +27,8 @@ public class ProjectController {
 
     @RequestMapping("/item/list")
     @ResponseBody
-    public EasyUIDataGridResult getProjectList(Integer page,Integer rows,String pro_name,String pro_header){
-        EasyUIDataGridResult result = projectService.getProjectList(page ,rows,pro_name,pro_header);
+    public EasyUIDataGridResult getProjectList(Integer page,Integer rows){
+        EasyUIDataGridResult result = projectService.getProjectList(page ,rows);
         return result;
     }
 
@@ -37,5 +37,11 @@ public class ProjectController {
     public PLResult deleteProjectById(Long id){
         PLResult result = projectService.deleteProjectById(id);
         return result;
+    }
+
+    @RequestMapping(value = "/add-project",method = RequestMethod.POST)
+    @ResponseBody
+    public void addProject(ta_project taProject){
+        projectService.addProject(taProject);
     }
 }

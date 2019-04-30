@@ -6,8 +6,20 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<table class="easyui-datagrid" id="ProjectList" title="项目列表" toolbar="#tb"
+<table class="easyui-datagrid" id="ProjectList" title="项目列表"
        data-options="singleSelect:false,collapsible:true,pagination:true,url:'/item/list',method:'get',pageSize:5,toolbar:toolbar">
+    <!--tr>
+        <div style="background-color: #CCDCF7;width:1725px;padding: 5px" id="tb">
+            <form>
+                <span style="font-size:14px">工程名称</span>&nbsp;&nbsp;
+                <input type="text" name="proj-name" id="proj-name" placeholder="输入查询关键字">&nbsp;&nbsp;
+                <span style="font-size:14px">项目负责人</span>&nbsp;&nbsp;
+                <input type="text" name="proj-header" id="proj-header" placeholder="输入查询关键字">&nbsp;&nbsp;
+                <a href="#" class="easyui-linkbutton" plain="true" onclick="doSearch()">查询</a>
+                <%--<button type="submit" value="add" class="active-event" style="float: right;background-color:#7FB1F5">添加防雷项目</button>--%>
+            </form>
+        </div>
+    </tr-->
     <thead>
     <tr>
         <th data-options="field:'ck',checkbox:true"></th>
@@ -15,20 +27,11 @@
         <th data-options="field:'pro_name',width:380">工程名称</th>
         <th data-options="field:'pro_header',width:150,align:'center'">项目负责人</th>
         <th data-options="field:'hea_mobile',width:150,align:'center'">负责人电话</th>
+        <th data-options="field:'pro_budget',width:150,align:'center'">工程预算（单位：万元）</th>
         <th data-options="field:'create_time',width:170,align:'center',formatter:TAOTAO.formatDateTime">创建时间</th>
     </tr>
     </thead>
 </table>
-<div style="background-color: #CCDCF7;width:1725px;padding: 5px" id="tb">
-    <form>
-        <span style="font-size:14px">工程名称</span>&nbsp;&nbsp;
-        <input type="text" name="proj-name" id="proj-name" placeholder="输入查询关键字">&nbsp;&nbsp;
-        <span style="font-size:14px">项目负责人</span>&nbsp;&nbsp;
-        <input type="text" name="proj-header" id="proj-header" placeholder="输入查询关键字">&nbsp;&nbsp;
-        <a href="#" class="easyui-linkbutton" plain="true" onclick="doSearch()">查询</a>
-        <%--<button type="submit" value="add" class="active-event" style="float: right;background-color:#7FB1F5">添加防雷项目</button>--%>
-    </form>
-</div>
 <div id="projectEditWindow" class="easyui-window" title="编辑项目" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/rest/page/item-edit'" style="width:80%;height:80%;padding:10px;">
 </div>
 <div id="projectAddWindow" class="easyui-window" title="新增项目" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/rest/page/item-edit'" style="width:80%;height:80%;padding:10px;">
@@ -41,7 +44,6 @@
             pro_header: $('pro_header').val()
         });
     }
-
     function getSelectionsIds(){
         var projectList = $("#ProjectList");
         var sels = projectList.datagrid("getSelections");

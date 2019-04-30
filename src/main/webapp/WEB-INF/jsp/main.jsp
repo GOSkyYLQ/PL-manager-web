@@ -59,13 +59,13 @@
             <ul>
                 <li data-options="attributes:{'url':'project-man'}">防雷项目管理</li>
                 <li data-options="attributes:{'url':'project-add'}">新增项目</li>
-                <li data-options="attributes:{'url':'project-update'}">编辑项目</li>
+                <%--<li data-options="attributes:{'url':'project-update'}">编辑项目</li>--%>
                 <li data-options="attributes:{'url':'unit-man'}">建设单位管理</li>
                 <li data-options="attributes:{'url':'unit-add'}">新增单位</li>
-                <li data-options="attributes:{'url':'unit-update'}">编辑单位</li>
+                <%--<li data-options="attributes:{'url':'unit-update'}">编辑单位</li>--%>
                 <li data-options="attributes:{'url':'project-place-man'}">项目所在地管理</li>
                 <li data-options="attributes:{'url':'project-place-add'}">新增所在地</li>
-                <li data-options="attributes:{'url':'project-place-update'}">编辑所在地</li>
+                <%--<li data-options="attributes:{'url':'project-place-update'}">编辑所在地</li>--%>
             </ul>
         </li>
         <li>
