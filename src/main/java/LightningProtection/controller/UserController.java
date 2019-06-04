@@ -37,7 +37,7 @@ public class UserController {
         }
     }*/
 
-    @RequestMapping(value = "/",method = RequestMethod.POST)
+    @RequestMapping(value = "/main",method = RequestMethod.POST)
     public String userLogin(HttpServletRequest request,HttpServletResponse response) throws Exception{
         String name = request.getParameter("username");
         String pass = request.getParameter("password");
@@ -47,7 +47,7 @@ public class UserController {
             /*ResponseUtil.write(response,"登录成功");*/
             return "main";
         }else{
-            ResponseUtil.write(response,"用户名或密码错误!");
+            //ResponseUtil.write(response,"用户名或密码错误!");
             return "login";
         }
     }

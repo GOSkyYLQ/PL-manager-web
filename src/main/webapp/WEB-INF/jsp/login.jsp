@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../img/login.ico" type="image/x-icon">
     <link rel="Shortcut Icon" href="../img/login.ico" type="image/x-icon">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <title>登录</title>
 </head>
 <body>
@@ -35,7 +36,7 @@
             </div>
             <div class="content">
                 <div class="errormsg"></div>
-                <form  method="post" action="/">
+                <form  method="post" id="form1" action="/main">
                     <div class="input-field">
                         <i class="fa fa-user-o"></i>
                         <input name="username" type="text" placeholder="用户名">

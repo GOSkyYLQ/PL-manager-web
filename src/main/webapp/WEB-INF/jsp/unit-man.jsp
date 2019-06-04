@@ -6,43 +6,149 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<table class="easyui-datagrid" id="UnitList" title="项目列表"
+<style type="text/css">
+    .fitem {
+        margin-bottom: 10px;
+    }
+
+    .fitem label {
+        display: inline-block;
+        text-align: right;
+        width: 80px;
+        font-size: 13px;
+        padding-right: 10px;
+    }
+
+    .fitem input {
+        width: 160px;
+    }
+</style>
+<table class="easyui-datagrid" id="UnitList" title="单位列表"
        data-options="singleSelect:false,collapsible:true,pagination:true,url:'/unit/list',method:'get',pageSize:5,toolbar:toolbar">
-    <tr>
-        <div style="background-color: #CCDCF7;width:1725px;padding: 5px">
-            <form>
-                <span style="font-size:14px">工程名称</span>&nbsp;&nbsp;
-                <input type="text" name="proj-name" id="proj-name" placeholder="输入查询关键字">&nbsp;&nbsp;
-                <span style="font-size:14px">单位名称</span>&nbsp;&nbsp;
-                <input type="text" name="unit-name" id="proj-header" placeholder="输入查询关键字">&nbsp;&nbsp;
-                <button type="submit" class="active-event" value="search">搜 索</button>
-                <%--<button type="submit" value="add" class="active-event" style="float: right;background-color:#7FB1F5">添加防雷项目</button>--%>
-            </form>
-        </div>
-    </tr>
     <thead>
     <tr>
         <th data-options="field:'ck',checkbox:true"></th>
-        <th data-options="field:'pro_name',width:380">工程名称</th>
-        <th data-options="field:'unit_name',width:150,align:'center'">单位名称</th>
-        <th data-options="field:'unit_address',width:150,align:'center'">单位地址</th>
-        <th data-options="field:'dept',width:150,align:'center'">主管部门</th>
-        <th data-options="field:'leader',width:150,align:'center'">主管领导</th>
+        <th data-options="field:'pro_name',width:300">工程名称</th>
+        <th data-options="field:'unit_name',width:200,align:'center'">单位名称</th>
+        <th data-options="field:'unit_address',width:250,align:'center'">单位地址</th>
+        <th data-options="field:'dept',width:100,align:'center'">主管部门</th>
+        <th data-options="field:'leader',width:100,align:'center'">主管领导</th>
         <th data-options="field:'lea_mobile',width:150,align:'center'">领导电话</th>
-        <th data-options="field:'hea',width:150,align:'center'">负责人</th>
+        <th data-options="field:'hea',width:100,align:'center'">负责人</th>
         <th data-options="field:'hea_mobile',width:150,align:'center'">负责人电话</th>
     </tr>
     </thead>
 </table>
-<div id="itemEditWindow" class="easyui-window" title="编辑单位" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/rest/page/item-edit'" style="width:80%;height:80%;padding:10px;">
+<div id="UnitEditWindow" class="easyui-window" title="编辑单位" closed="true" style="width:40%;height:60%;padding:10px;"
+     buttons="#dlg-buttons">
+    <form id="form8" method="post" action="/edit-unit" style="margin-top: 20px; margin-left: 20px;">
+        <div class="fitem">
+            <label>工程名称:</label>
+            <input id="pro_name" name="pro_name" style="" class="easyui-textbox"/>
+        </div>
+        <div class="fitem">
+            <label>单位名称:</label>
+            <input id="unit_name" name="unit_name" style="" class="easyui-textbox"/>
+        </div>
+        <div class="fitem">
+            <label>单位地址:</label>
+            <input id="unit_address" name="unit_address" style="" class="easyui-textbox"/>
+        </div>
+        <div class="fitem">
+            <label>主管部门:</label>
+            <input id="depart" name="dept" style="" class="easyui-textbox"/>
+        </div>
+        <div class="fitem">
+            <label>主管领导:</label>
+            <input id="lea-boss" name="leader" style="" class="easyui-textbox"/>
+        </div>
+        <div class="fitem">
+            <label>领导电话:</label>
+            <input id="lea_mobile" name="lea_mobile" style="" class="easyui-textbox"/>
+        </div>
+        <div class="fitem">
+            <label>负责人:</label>
+            <input id="header" name="hea" style="" class="easyui-textbox"/>
+        </div>
+        <div class="fitem">
+            <label>负责人电话:</label>
+            <input id="hea_mobile" name="hea_mobile" style="" class="easyui-textbox"/>
+        </div>
+        <div id="dlg-buttons" style="display: block">
+            <%--<button  type="submit" class="easyui-linkbutton c6" iconcls="icon-ok" style="width: 90px">提交</button>--%>
+            <a id="confirm" href="javascript:void(0)" class="easyui-linkbutton c6" iconcls="icon-ok" onclick="Modify()"
+               style="width: 90px">提交</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel"
+               onclick="javascript:$('#UnitEditWindow').window('close')" style="width: 90px">取消</a>
+        </div>
+    </form>
+</div>
+<div id="UnitAddWindow" class="easyui-window" title="新增单位" closed="true" style="width: 40%;height: 50%;padding: 10px">
+    <form class="form-horizontal" role="form" id="form" action="/add-unit" method="post">
+        <div class="form-group">
+            <label for="pro-name" class="col-sm-2 control-label">工程名称</label>
+            <input type="text" class="easyui-textbox" id="pro-name" name="pro_name"
+                   placeholder="请输入工程名称">
+        </div>
+        <div class="form-group">
+            <label for="unit-name" class="col-sm-2 control-label">单位名称</label>
+            <input type="text" class="easyui-textbox" id="unit-name" name="unit_name"
+                   placeholder="请输入单位名称">
+        </div>
+        <div class="form-group">
+            <label for="unit-address" class="col-sm-2 control-label">单位地址</label>
+            <input type="text" class="easyui-textbox" id="unit-address" name="unit_address"
+                   placeholder="请输入单位地址">
+        </div>
+        <div class="form-group">
+            <label for="Dept" class="col-sm-2 control-label">主管部门</label>
+            <input type="text" class="easyui-textbox" id="Dept" name="dept"
+                   placeholder="请输入主管部门">
+        </div>
+        <div class="form-group">
+            <label for="Leader" class="col-sm-2 control-label">主管领导</label>
+            <input type="text" class="easyui-textbox" id="Leader" name="leader"
+                   placeholder="请输入主管领导">
+        </div>
+        <div class="form-group">
+            <label for="lea-mobile" class="col-sm-2 control-label">领导电话</label>
+            <input type="text" class="easyui-textbox" id="lea-mobile" name="lea_mobile"
+                   placeholder="请输入领导电话">
+        </div>
+        <div class="form-group">
+            <label for="Hea" class="col-sm-2 control-label">负责人</label>
+            <input type="text" class="easyui-textbox" id="Hea" name="hea"
+                   placeholder="请输入负责人">
+        </div>
+        <div class="form-group">
+            <label for="hea-mobile" class="col-sm-2 control-label">负责人电话</label>
+            <input type="text" class="easyui-textbox" id="hea-mobile" name="hea_mobile"
+                   placeholder="请输入负责人电话">
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="easyui-linkbutton c6">提交</button>
+            </div>
+        </div>
+    </form>
 </div>
 <script>
-
-    function getSelectionsIds(){
+    function Modify() {
+        $("#UnitEditWindow").window("close");
+    }
+    $("#form").form({
+        success:function () {
+            $.messager.alert('提示', '新增单位成功!', undefined, function () {
+                $("#UnitList").datagrid("reload");
+                $("#UnitAddWindow").window("close");
+            });
+        }
+    })
+    function getSelectionsIds() {
         var itemList = $("#UnitList");
         var sels = itemList.datagrid("getSelections");
         var ids = [];
-        for(var i in sels){
+        for (var i in sels) {
             ids.push(sels[i].id);
         }
         ids = ids.join(",");
@@ -50,94 +156,56 @@
     }
 
     var toolbar = [{
-        text:'新增',
-        iconCls:'icon-add',
-        handler:function(){
-            $(".tree-title:contains('新增商品')").parent().click();
+        text: '新增',
+        iconCls: 'icon-add',
+        handler: function () {
+            $("#UnitAddWindow").window('open');
         }
-    },{
-        text:'编辑',
-        iconCls:'icon-edit',
-        handler:function(){
+    }, {
+        text: '编辑',
+        iconCls: 'icon-edit',
+        handler: function () {
             var ids = getSelectionsIds();
-            if(ids.length == 0){
-                $.messager.alert('提示','必须选择一个商品才能编辑!');
-                return ;
+            if (ids.length == 0) {
+                $.messager.alert('提示', '必须选择一个单位才能编辑!');
+                return;
             }
-            if(ids.indexOf(',') > 0){
-                $.messager.alert('提示','只能选择一个商品!');
-                return ;
+            if (ids.indexOf(',') > 0) {
+                $.messager.alert('提示', '只能选择一个单位!');
+                return;
             }
-
-            $("#itemEditWindow").window({
-                onLoad :function(){
-                    //回显数据
-                    var data = $("#itemList").datagrid("getSelections")[0];
-                    data.priceView = TAOTAO.formatPrice(data.price);
-                    $("#itemeEditForm").form("load",data);
-
-                    // 加载商品描述
-                    $.getJSON('/rest/item/query/item/desc/'+data.id,function(_data){
-                        if(_data.status == 200){
-                            //UM.getEditor('itemeEditDescEditor').setContent(_data.data.itemDesc, false);
-                            itemEditEditor.html(_data.data.itemDesc);
-                        }
-                    });
-
-                    //加载商品规格
-                    $.getJSON('/rest/item/param/item/query/'+data.id,function(_data){
-                        if(_data && _data.status == 200 && _data.data && _data.data.paramData){
-                            $("#itemeEditForm .params").show();
-                            $("#itemeEditForm [name=itemParams]").val(_data.data.paramData);
-                            $("#itemeEditForm [name=itemParamId]").val(_data.data.id);
-
-                            //回显商品规格
-                            var paramData = JSON.parse(_data.data.paramData);
-
-                            var html = "<ul>";
-                            for(var i in paramData){
-                                var pd = paramData[i];
-                                html+="<li><table>";
-                                html+="<tr><td colspan=\"2\" class=\"group\">"+pd.group+"</td></tr>";
-
-                                for(var j in pd.params){
-                                    var ps = pd.params[j];
-                                    html+="<tr><td class=\"param\"><span>"+ps.k+"</span>: </td><td><input autocomplete=\"off\" type=\"text\" value='"+ps.v+"'/></td></tr>";
-                                }
-
-                                html+="</li></table>";
-                            }
-                            html+= "</ul>";
-                            $("#itemeEditForm .params td").eq(1).html(html);
-                        }
-                    });
-
-                    TAOTAO.init({
-                        "pics" : data.image,
-                        "cid" : data.cid,
-                        fun:function(node){
-                            TAOTAO.changeItemParam(node, "itemeEditForm");
-                        }
-                    });
+            var data=$("#UnitList").datagrid("getSelected");
+            $("#form8").form("load",{
+                pro_name:data.pro_name,
+                unit_name:data.unit_name,
+                unit_address:data.unit_address,
+                dept:data.dept,
+                leader:data.leader,
+                lea_mobile:data.lea_mobile,
+                hea:data.hea,
+                hea_mobile:data.hea_mobile
+            })
+            $("#UnitEditWindow").window({
+                onLoad: function () {
                 }
             }).window("open");
         }
-    },{
-        text:'删除',
-        iconCls:'icon-cancel',
-        handler:function(){
+    }, {
+        text: '删除',
+        iconCls: 'icon-cancel',
+        handler: function () {
             var ids = getSelectionsIds();
-            if(ids.length == 0){
-                $.messager.alert('提示','未选中商品!');
-                return ;
+            if (ids.length == 0) {
+                $.messager.alert('提示', '未选中单位!');
+                return;
             }
-            $.messager.confirm('确认','确定删除ID为 '+ids+' 的商品吗？',function(r){
-                if (r){
-                    var params = {"ids":ids};
-                    $.post("/rest/item/delete",params, function(data){
-                        if(data.status == 200){
-                            $.messager.alert('提示','删除商品成功!',undefined,function(){
-                                $("#itemList").datagrid("reload");
+            $.messager.confirm('确认', '确定删除ID为 ' + ids + ' 的单位吗？', function (r) {
+                if (r) {
+                    var params = {"ids": ids};
+                    $.post("/rest/unit/delete", params, function (data) {
+                        if (data.status == 200) {
+                            $.messager.alert('提示', '删除单位成功!', undefined, function () {
+                                $("#UnitList").datagrid("reload");
                             });
                         }
                     });

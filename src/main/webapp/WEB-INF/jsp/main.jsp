@@ -22,6 +22,7 @@
     <script type="text/javascript"
             src="../js/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript" src="../js/ajaxfileupload.js"></script>
     <link href="../css/jquery.easy_slides.css" rel="stylesheet">
     <script src="../js/jquery.easy_slides.js"></script>
     <style type="text/css">
@@ -57,29 +58,20 @@
         <li>
             <span>防雷工程管理</span>
             <ul>
-                <li data-options="attributes:{'url':'project-man'}">防雷项目管理</li>
-                <li data-options="attributes:{'url':'project-add'}">新增项目</li>
-                <%--<li data-options="attributes:{'url':'project-update'}">编辑项目</li>--%>
+                <li data-options="attributes:{'url':'project-man'}">项目基本信息管理</li>
+                <li data-options="attributes:{'url':'project-review'}">项目审核</li>
+                <li data-options="attributes:{'url':'kance-man'}">勘测信息管理</li>
+                <li data-options="attributes:{'url':'design-man'}">设计信息管理</li>
+                <li data-options="attributes:{'url':'build-man'}">施工信息管理</li>
                 <li data-options="attributes:{'url':'unit-man'}">建设单位管理</li>
-                <li data-options="attributes:{'url':'unit-add'}">新增单位</li>
-                <%--<li data-options="attributes:{'url':'unit-update'}">编辑单位</li>--%>
                 <li data-options="attributes:{'url':'project-place-man'}">项目所在地管理</li>
-                <li data-options="attributes:{'url':'project-place-add'}">新增所在地</li>
-                <%--<li data-options="attributes:{'url':'project-place-update'}">编辑所在地</li>--%>
             </ul>
         </li>
         <li>
-            <span>工程管理</span>
+            <span>资源管理</span>
             <ul>
                 <li data-options="attributes:{'url':'contract-man'}">合同管理</li>
-                <li data-options="attributes:{'url':'fixed-assets'}">固定资产</li>
-            </ul>
-        </li>
-        <li>
-            <span>审核管理</span>
-            <ul>
-                <li data-options="attributes:{'url':'project_check'}">项目审核</li>
-                <li data-options="attributes:{'url':'contract-check'}">合同审核</li>
+                <li data-options="attributes:{'url':'assets-man'}">固定资产管理</li>
             </ul>
         </li>
     </ul>
